@@ -7,7 +7,7 @@
 name: Testing
 on:
   release:
-    types: [pueblished]
+    types: [published]
   push:
     branches:
       - "feature**"
