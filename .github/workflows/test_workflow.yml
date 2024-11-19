@@ -25,9 +25,9 @@ jobs:
         # Initially meant to get the target environment, but as it is easier to manipulate strings in bash than in gha, a few useful
         # outputs have been added.
         id: environment
-        env:
         run: |
 
+          echo "${{github}}"
 
           case "${{github.ref_name}}" in
             main|master|hotfix*)
