@@ -29,7 +29,8 @@ jobs:
 
           echo "${{github.ref}}"
           echo "${{github.ref_name}}"
-
+          echo "{{$github.ref_type}}"
+          
           case "${{github.ref_name}}" in
             main|master|hotfix*)
               echo "WE ARE MAIN"
