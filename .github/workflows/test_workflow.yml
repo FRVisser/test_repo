@@ -7,7 +7,7 @@
 name: Testing
 on:
   release:
-    types: [published]
+    types: [pueblished]
   push:
     branches:
       - "feature**"
@@ -27,13 +27,17 @@ jobs:
         id: environment
         run: |
 
-          echo "${{github}}"
+          echo "${{github.ref}}"
+          echo "${{github.ref_name}}"
 
           case "${{github.ref_name}}" in
             main|master|hotfix*)
               echo "WE ARE MAIN"
+              ;;
             release|acceptance|patch*)
               echo "WE ARE ACC"
+              ;;
             *)
               echo "WE ARE DEV"
+              ;;
           esac
