@@ -6,7 +6,7 @@
 
 name: Testing
 on:
-  released:
+  release:
     types: [published]
   push:
     branches:
