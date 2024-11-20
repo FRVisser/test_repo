@@ -24,22 +24,11 @@ jobs:
         # Initially meant to get the target environment, but as it is easier to manipulate strings in bash than in gha, a few useful
         # outputs have been added.
         id: environment
-        run: |
+        run:
 
           echo "${{github.ref}}"
           echo "${{github.ref_name}}"
           echo "${{github.ref_type}}"
-#          echo "${{github.event.release.release}}"
+          echo "${{github.event.release.action}}"
           echo "${{github.event.release.prerelease}}"
-          
-          case "${{github.ref_name}}" in
-            main|master|hotfix*)
-              echo "WE ARE MAIN"
-              ;;
-            release|acceptance|patch*)
-              echo "WE ARE ACC"
-              ;;
-            *)
-              echo "WE ARE DEV"
-              ;;
-          esac
+
