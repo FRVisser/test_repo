@@ -7,6 +7,9 @@
 name: Testing
 on:
   release:
+    - released
+    - prereleased
+    - edited
   push:
     branches:
       - "feature**"
