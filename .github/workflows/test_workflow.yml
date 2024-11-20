@@ -8,9 +8,7 @@ name: Testing
 on:
   release:
     types:
-      - released
-      - prereleased
-      - edited
+      - published
   push:
     branches:
       - "feature**"
