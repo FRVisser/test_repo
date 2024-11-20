@@ -24,6 +24,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
       - name: Determine deployment variables
         # Initially meant to get the target environment, but as it is easier to manipulate strings in bash than in gha, a few useful
         # outputs have been added.
@@ -36,3 +39,23 @@ jobs:
           echo "${{github.event.action}}"
           echo "${{github.event.release.prerelease}}"
 
+      - name: Check if Tag is a Release or Prerelease
+        id: check_release
+        run: |
+          TAG=${{ github.event.inputs.tag }}
+          RELEASE_INFO=$(gh api repos/${{ github.repository }}/releases/tags/$TAG --jq '{tag_name: .tag_name, prerelease: .prerelease}')
+          
+          if [[ -z "$RELEASE_INFO" ]]; then
+            echo "No release found for tag $TAG"
+            echo "is_release=false" >> $GITHUB_ENV
+          else
+            echo "Found release for tag $TAG"
+            echo "$RELEASE_INFO"
+            echo "is_release=true" >> $GITHUB_ENV
+            echo "is_prerelease=$(echo $RELEASE_INFO | jq -r '.prerelease')" >> $GITHUB_ENV
+          fi
+
+      - name: Output Release Information
+        run: |
+          echo "Is Release: ${{ env.is_release }}"
+          echo "Is Prerelease: ${{ env.is_prerelease }}"
