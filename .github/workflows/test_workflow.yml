@@ -54,6 +54,8 @@ jobs:
             echo "is_release=true" >> $GITHUB_ENV
             echo "is_prerelease=$(echo $RELEASE_INFO | jq -r '.prerelease')" >> $GITHUB_ENV
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Output Release Information
         run: |
