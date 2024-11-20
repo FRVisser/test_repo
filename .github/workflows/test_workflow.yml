@@ -29,6 +29,6 @@ jobs:
           echo "${{github.ref}}"
           echo "${{github.ref_name}}"
           echo "${{github.ref_type}}"
-          echo "${{github.event.release.action}}"
+          echo "${{github.event.action}}"
           echo "${{github.event.release.prerelease}}"
 
